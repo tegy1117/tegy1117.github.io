@@ -57,3 +57,8 @@ exclude:
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
+
+# Sass configuration
+sass:
+  style: compressed
+  sass_dir: _sass
