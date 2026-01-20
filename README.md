@@ -12,6 +12,7 @@ GitHub Pages와 Jekyll을 활용한 개인 포트폴리오 웹사이트입니다
 - **태그 시스템**: 프로젝트와 블로그 글 자동 연결
 - **검색 & 필터**: 전체 콘텐츠 검색 및 태그 필터링
 - **활동 달력**: GitHub 잔디 스타일 히트맵으로 활동 시각화
+- **최신 기술 스택**: Jekyll 4.x, 최신 Sass 모듈 시스템 (`@use`, `color.adjust()` 등)
 
 ## 🚀 빠른 시작
 
@@ -38,10 +39,20 @@ bundle exec jekyll serve
 
 ### GitHub Pages 배포
 
+이 사이트는 GitHub Actions를 통해 자동으로 빌드 및 배포됩니다.
+
+#### 초기 설정 (한 번만 수행)
+
 1. GitHub 저장소 설정 → Pages 설정
-2. Source를 "Deploy from a branch" 선택
-3. Branch를 `main` (또는 원하는 브랜치) 선택
-4. 자동으로 배포됨
+2. **Source를 "GitHub Actions"로 변경**
+3. `main` 브랜치에 push하면 자동으로 빌드 및 배포됨
+
+#### 배포 프로세스
+
+- `main` 브랜치에 push할 때마다 `.github/workflows/jekyll.yml` 워크플로우가 자동 실행
+- 최신 Jekyll 4.x와 Ruby 3.2 사용
+- 최신 Sass 문법 (`@use`, `color.adjust()` 등) 완벽 지원
+- Actions 탭에서 배포 상태 확인 가능
 
 ## 📁 디렉토리 구조
 
