@@ -1,0 +1,9 @@
+<div class="tag-filter">
+  <input type="text" 
+         class="search-input" 
+         id="tag-filter-input" 
+         placeholder="{% if include.lang == 'en' %}Filter by tag...{% else %}태그로 필터링...{% endif %}"
+         autocomplete="off">
+  <div class="filter-tags" id="available-tags"></div>
+  <div class="selected-tags" id="selected-tags"></div>
+</div>

@@ -1,0 +1,21 @@
+main:
+  - title: 홈
+    title_en: Home
+    url: /
+    url_en: /en/
+  - title: 프로젝트
+    title_en: Projects
+    url: /projects/
+    url_en: /en/projects/
+  - title: 자격증
+    title_en: Certificates
+    url: /certificates/
+    url_en: /en/certificates/
+  - title: 블로그
+    title_en: Blog
+    url: /blog/
+    url_en: null
+  - title: 달력
+    title_en: Calendar
+    url: /calendar/
+    url_en: null

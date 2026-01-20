@@ -1,0 +1,17 @@
+- id: aws-saa
+  name: AWS Solutions Architect Associate
+  name_en: AWS Solutions Architect Associate
+  status: studying
+  category: 클라우드
+  acquired_date: null
+  tags: [AWS, 클라우드, 자격증]
+  related_post: aws-study-log
+
+- id: engineer-information-processing
+  name: 정보처리기사
+  name_en: Engineer Information Processing
+  status: acquired
+  category: 자격증
+  acquired_date: 2025-06-15
+  tags: [정보처리기사, 자격증]
+  related_post: null

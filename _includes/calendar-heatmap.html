@@ -1,0 +1,41 @@
+{% assign data = include.data %}
+<div class="calendar-graph">
+  <!-- Simple progress history visualization -->
+  <div class="progress-history-list">
+    {% for entry in data %}
+    <div class="history-entry">
+      <span class="history-date">{{ entry.date | date: "%Y-%m-%d" }}</span>
+      <div class="progress-bar">
+        <div class="progress-fill" style="width: {{ entry.value }}%"></div>
+      </div>
+      <span class="history-value">{{ entry.value }}%</span>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+.progress-history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.history-entry {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.history-date {
+  font-size: 0.9rem;
+  color: #8b949e;
+  min-width: 100px;
+}
+
+.history-value {
+  font-size: 0.9rem;
+  color: #8b949e;
+  min-width: 50px;
+}
+</style>

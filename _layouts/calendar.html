@@ -1,0 +1,24 @@
+---
+layout: default
+---
+
+<div class="container">
+  <h1>{% if page.lang == 'en' %}Activity Calendar{% else %}활동 달력{% endif %}</h1>
+  
+  <div class="calendar-heatmap" id="activity-calendar">
+    <!-- Calendar will be rendered by JavaScript -->
+  </div>
+  
+  <section id="calendar-details" class="calendar-details" style="margin-top: 2rem;">
+    <h2>{% if page.lang == 'en' %}Activities{% else %}활동 목록{% endif %}</h2>
+    <div id="activity-list">
+      <!-- Activity list will be populated by JavaScript -->
+    </div>
+  </section>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  renderActivityCalendar();
+});
+</script>

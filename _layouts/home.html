@@ -1,0 +1,91 @@
+---
+layout: default
+---
+
+<div class="container">
+  {{ content }}
+  
+  <!-- Featured Projects Section -->
+  {% assign featured_projects = site.data.projects | where: "featured", true %}
+  {% if featured_projects.size > 0 %}
+  <section class="featured-section">
+    <h2>{% if page.lang == 'en' %}Featured Projects{% else %}대표 활동{% endif %}</h2>
+    {% for project in featured_projects %}
+    <div class="featured-card">
+      <div class="featured-label">Featured</div>
+      <h3>
+        <a href="{{ '/projects/' | append: project.id | relative_url }}">
+          {% if page.lang == 'en' %}{{ project.name_en }}{% else %}{{ project.name }}{% endif %}
+        </a>
+      </h3>
+      <div class="card-meta">
+        <span class="status-badge {{ project.status }}">
+          {% case project.status %}
+            {% when 'ongoing' %}진행중
+            {% when 'completed' %}완료
+            {% when 'paused' %}일시중지
+          {% endcase %}
+        </span>
+        <span class="progress-text">{{ project.progress }}%</span>
+        {% if project.deadline %}
+          {% assign today = 'now' | date: '%s' %}
+          {% assign deadline = project.deadline | date: '%s' %}
+          {% assign days_diff = deadline | minus: today | divided_by: 86400 %}
+          <span class="dday">D-{{ days_diff }}</span>
+        {% endif %}
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" style="width: {{ project.progress }}%"></div>
+      </div>
+      <p>{{ project.description | slice: 0, 100 }}...</p>
+      <div class="card-tags">
+        {% for tag in project.tags %}
+        <span class="tag">{{ tag }}</span>
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+  </section>
+  {% endif %}
+  
+  <!-- Other Projects Section -->
+  <section class="other-projects-section">
+    <h2>{% if page.lang == 'en' %}Other Projects{% else %}기타 활동{% endif %}</h2>
+    <div class="projects-grid">
+      {% for project in site.data.projects %}
+        {% unless project.featured %}
+        <div class="card">
+          <h3 class="card-title">
+            <a href="{{ '/projects/' | append: project.id | relative_url }}">
+              {% if page.lang == 'en' %}{{ project.name_en }}{% else %}{{ project.name }}{% endif %}
+            </a>
+          </h3>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: {{ project.progress }}%"></div>
+          </div>
+          <div class="progress-text">{{ project.progress }}%</div>
+        </div>
+        {% endunless %}
+      {% endfor %}
+    </div>
+  </section>
+  
+  <!-- Contact Section -->
+  <section class="contact-section">
+    <h2>{% if page.lang == 'en' %}Contact{% else %}연락처{% endif %}</h2>
+    <div class="contact-methods">
+      {% if site.email %}
+      <div class="contact-item">
+        <span>📧</span>
+        <a href="mailto:{{ site.email }}">{{ site.email }}</a>
+      </div>
+      {% endif %}
+      {% if site.github_username %}
+      <div class="contact-item">
+        <span>🐙</span>
+        <a href="https://github.com/{{ site.github_username }}" target="_blank">GitHub</a>
+      </div>
+      {% endif %}
+    </div>
+  </section>
+</div>
