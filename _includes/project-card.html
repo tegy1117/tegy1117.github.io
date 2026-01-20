@@ -1,0 +1,29 @@
+{% assign project = include.project %}
+<div class="card project-card">
+  <h3 class="card-title">
+    <a href="{{ '/projects/' | append: project.id | relative_url }}">
+      {% if include.lang == 'en' %}{{ project.name_en }}{% else %}{{ project.name }}{% endif %}
+    </a>
+  </h3>
+  <div class="card-meta">
+    <span class="status-badge {{ project.status }}">
+      {% case project.status %}
+        {% when 'ongoing' %}{% if include.lang == 'en' %}Ongoing{% else %}진행중{% endif %}
+        {% when 'completed' %}{% if include.lang == 'en' %}Completed{% else %}완료{% endif %}
+        {% when 'paused' %}{% if include.lang == 'en' %}Paused{% else %}일시중지{% endif %}
+      {% endcase %}
+    </span>
+    <span>{{ project.category }}</span>
+  </div>
+  <div class="progress-bar">
+    <div class="progress-fill" style="width: {{ project.progress }}%"></div>
+  </div>
+  <div class="progress-text">{{ project.progress }}%</div>
+  {% if project.tags %}
+  <div class="card-tags">
+    {% for tag in project.tags %}
+    <span class="tag">{{ tag }}</span>
+    {% endfor %}
+  </div>
+  {% endif %}
+</div>

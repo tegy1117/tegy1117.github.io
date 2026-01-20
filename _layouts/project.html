@@ -1,0 +1,81 @@
+---
+layout: default
+---
+
+{% assign project_data = site.data.projects | where: "id", page.project_id | first %}
+
+<div class="container">
+  <article class="project-detail">
+    <header>
+      <h1>{% if page.lang == 'en' %}{{ project_data.name_en }}{% else %}{{ project_data.name }}{% endif %}</h1>
+      <div class="card-meta">
+        <span class="status-badge {{ project_data.status }}">
+          {% case project_data.status %}
+            {% when 'ongoing' %}{% if page.lang == 'en' %}Ongoing{% else %}진행중{% endif %}
+            {% when 'completed' %}{% if page.lang == 'en' %}Completed{% else %}완료{% endif %}
+            {% when 'paused' %}{% if page.lang == 'en' %}Paused{% else %}일시중지{% endif %}
+          {% endcase %}
+        </span>
+        <span>시작일: {{ project_data.start_date | date: "%Y-%m-%d" }}</span>
+        {% if project_data.deadline %}
+          {% assign today = 'now' | date: '%s' %}
+          {% assign deadline = project_data.deadline | date: '%s' %}
+          {% assign days_diff = deadline | minus: today | divided_by: 86400 %}
+          <span class="dday">D-{{ days_diff }}</span>
+        {% endif %}
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" style="width: {{ project_data.progress }}%"></div>
+      </div>
+      <div class="progress-text">진행도: {{ project_data.progress }}%</div>
+      <div class="card-tags">
+        {% for tag in project_data.tags %}
+        <span class="tag">{{ tag }}</span>
+        {% endfor %}
+      </div>
+    </header>
+    
+    <section class="project-content">
+      {{ content }}
+    </section>
+    
+    {% if project_data.links %}
+    <section class="project-links">
+      <h2>{% if page.lang == 'en' %}Links{% else %}링크{% endif %}</h2>
+      <ul>
+        {% for link in project_data.links %}
+        <li><a href="{{ link.url }}" target="_blank">{{ link.label }}</a></li>
+        {% endfor %}
+      </ul>
+    </section>
+    {% endif %}
+    
+    <!-- Progress History -->
+    {% if project_data.progress_history %}
+    <section class="progress-history">
+      <h2>{% if page.lang == 'en' %}Progress History{% else %}진행도 히스토리{% endif %}</h2>
+      <div class="calendar-heatmap">
+        {% include calendar-heatmap.html data=project_data.progress_history %}
+      </div>
+    </section>
+    {% endif %}
+    
+    <!-- Related blog posts -->
+    <section class="related-posts">
+      <h2>{% if page.lang == 'en' %}Related Blog Posts{% else %}관련 개발일지{% endif %}</h2>
+      <div class="projects-grid">
+        {% for post in site.posts %}
+          {% if post.tags contains project_data.id %}
+          <div class="card">
+            <h3 class="card-title">
+              <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            </h3>
+            <div class="card-meta">{{ post.date | date: "%Y-%m-%d" }}</div>
+            <p>{{ post.excerpt | strip_html | truncate: 100 }}</p>
+          </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </section>
+  </article>
+</div>

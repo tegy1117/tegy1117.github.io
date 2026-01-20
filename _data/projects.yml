@@ -1,0 +1,44 @@
+- id: portfolio
+  name: 포트폴리오 사이트
+  name_en: Portfolio Website
+  featured: true
+  status: ongoing
+  category: 개발
+  tags: [웹, Jekyll, 포트폴리오]
+  start_date: 2026-01-10
+  deadline: 2026-02-28
+  progress: 45
+  progress_history:
+    - date: 2026-01-12
+      value: 30
+    - date: 2026-01-19
+      value: 45
+  description: portfolio.md
+  description_en: portfolio_en.md
+  thumbnail: /assets/img/portfolio-thumb.png
+  links:
+    - label: GitHub
+      url: https://github.com/tegy1117/tegy1117.github.io
+
+- id: machine-learning
+  name: 머신러닝 프로젝트
+  name_en: Machine Learning Project
+  featured: false
+  status: paused
+  category: AI/ML
+  tags: [Python, TensorFlow, 데이터분석]
+  start_date: 2025-11-15
+  progress: 60
+  progress_history:
+    - date: 2025-11-20
+      value: 30
+    - date: 2025-12-10
+      value: 50
+    - date: 2026-01-05
+      value: 60
+  description: ml-project.md
+  description_en: ml-project_en.md
+  thumbnail: /assets/img/ml-thumb.png
+  links:
+    - label: GitHub
+      url: https://github.com/tegy1117/ml-project

@@ -1,0 +1,29 @@
+<header class="site-header">
+  <div class="container">
+    <div class="site-title">
+      <a href="{{ '/' | relative_url }}">
+        {% if page.lang == 'en' %}{{ site.title_en }}{% else %}{{ site.title }}{% endif %}
+      </a>
+    </div>
+    <nav>
+      <ul>
+        {% for item in site.data.navigation.main %}
+          {% if page.lang == 'en' %}
+            {% if item.url_en %}
+            <li><a href="{{ item.url_en | relative_url }}" {% if page.url == item.url_en %}class="active"{% endif %}>{{ item.title_en }}</a></li>
+            {% endif %}
+          {% else %}
+            <li><a href="{{ item.url | relative_url }}" {% if page.url == item.url %}class="active"{% endif %}>{{ item.title }}</a></li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </nav>
+    <div class="lang-switch">
+      {% if page.lang == 'en' %}
+        <a href="{{ page.url | replace: '/en/', '/' }}">KO</a> | <a href="#" class="active">EN</a>
+      {% else %}
+        <a href="#" class="active">KO</a> | <a href="{{ '/en' | append: page.url | relative_url }}">EN</a>
+      {% endif %}
+    </div>
+  </div>
+</header>

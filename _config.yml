@@ -1,0 +1,59 @@
+# Site settings
+title: "개발자 포트폴리오"
+title_en: "Developer Portfolio"
+description: "개인 프로젝트와 개발 활동을 기록하는 포트폴리오 사이트"
+description_en: "Portfolio site documenting personal projects and development activities"
+baseurl: ""
+url: "https://tegy1117.github.io"
+
+# Contact information
+email: contact@example.com
+github_username: tegy1117
+
+# Build settings
+markdown: kramdown
+permalink: /blog/:year/:month/:day/:title/
+timezone: Asia/Seoul
+
+# Collections
+collections:
+  projects:
+    output: true
+    permalink: /projects/:name/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      lang: "ko"
+  - scope:
+      path: ""
+      type: "projects"
+    values:
+      layout: "project"
+  - scope:
+      path: "en"
+    values:
+      lang: "en"
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - README.md
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
